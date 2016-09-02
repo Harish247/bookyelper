@@ -17,3 +17,5 @@ libraryDependencies ++= Seq(
 lazy val bookYelper = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
 
 fork in run := false
+
+fork in run := true

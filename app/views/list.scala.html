@@ -47,7 +47,7 @@
 
     <div id="actions">
         
-        <form action="@link(0, "name")" method="GET">
+        <form action='@link(0, "name")' method="GET">
             <input type="search" id="searchbox" name="f" value="@currentFilter" placeholder="Filter by computer name...">
             <input type="submit" id="searchsubmit" value="Filter by name" class="btn primary">
         </form>
@@ -71,6 +71,7 @@
                     @header("introduced", "Introduced")
                     @header("discontinued", "Discontinued")
                     @header("company.name", "Company")
+                    @header("processor", "processor")
                 </tr>
             </thead>
             <tbody>
@@ -97,6 +98,13 @@
                                 <em>-</em>
                             } else {
                                 @computer.company.name
+                            }
+                        </td>
+                        <td>
+                            @if(computer.processor==null){
+                            <em>-</em>
+                            }else{
+                                @computer.processor
                             }
                         </td>
                     </tr>

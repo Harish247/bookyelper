@@ -1,7 +1,9 @@
 package controllers;
 
+import com.google.inject.Inject;
 import play.mvc.*;
 import play.data.*;
+
 import static play.data.Form.*;
 
 import views.html.*;
@@ -12,7 +14,10 @@ import models.*;
  * Manage a database of computers
  */
 public class Application extends Controller {
-    
+
+    @Inject private FormFactory formFactory;
+
+
     /**
      * This result directly redirect to application home.
      */
@@ -68,10 +73,15 @@ public class Application extends Controller {
         if(computerForm.hasErrors()) {
             return badRequest(editForm.render(id, computerForm));
         }
-        computerForm.get().update(String.valueOf(id));
+        computerForm.get().update();
         flash("success", "Computer " + computerForm.get().name + " has been updated");
         return GO_HOME;
     }
+
+
+
+
+
     
     /**
      * Display the 'new computer form'.
@@ -82,7 +92,18 @@ public class Application extends Controller {
             createForm.render(computerForm)
         );
     }
-    
+
+   /* public Result create(){
+        Form<Book> bookForm = formFactory.form(Book.class);
+        return ok(
+            createForm.render(bookForm)
+        );
+    }*/
+
+
+
+
+
     /**
      * Handle the 'new computer form' submission 
      */
@@ -95,7 +116,21 @@ public class Application extends Controller {
         flash("success", "Computer " + computerForm.get().name + " has been created");
         return GO_HOME;
     }
-    
+
+/*
+   public Result save(){
+
+       Form<Book> bookForm = formFactory.form(Book.class).bindFromRequest();
+       if(bookForm.hasErrors()){
+           return badRequest(createForm.render(bookForm));
+       }
+       bookForm.get().save();
+   }
+*/
+
+
+
+
     /**
      * Handle computer deletion
      */

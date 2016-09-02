@@ -2,35 +2,62 @@
 
 @import helper._
 
-@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
 
 @main {
-    
-    <h1>Add a computer</h1>
-    
-    @form(routes.Application.save()) {
-        
-        <fieldset>
-        
-            @inputText(computerForm("name"), '_label -> "Computer name", '_help -> "")
-            @inputDate(computerForm("introduced"), '_label -> "Introduced date", '_help -> "")
-            @inputDate(computerForm("discontinued"), '_label -> "Discontinued date", '_help -> "")
 
-            @select(
-                computerForm("company.id"), 
-                options(Company.options), 
-                '_label -> "Company", '_default -> "-- Choose a company --",
-                '_showConstraints -> false
-            )
-            
+<h1>Add a computer</h1>
 
-        </fieldset>
-        
-        <div class="actions">
-            <input type="submit" value="Create this computer" class="btn primary"> or 
-            <a href="@routes.Application.list()" class="btn">Cancel</a> 
-        </div>
-        
-    }
-    
+@form(routes.Application.save()) {
+
+<fieldset>
+
+    @inputText(computerForm("name"), '_label -> "Computer name", '_help -> "")
+    @inputDate(computerForm("introduced"), '_label -> "Introduced date", '_help -> "")
+    @inputDate(computerForm("discontinued"), '_label -> "Discontinued date", '_help -> "")
+    @inputText(computerForm("processor"), '_label -> "Processor", '_help ->"")
+
+    @select(
+    computerForm("company.id"),
+    options(Company.options),
+    '_label -> "Company", '_default -> "-- Choose a company --",
+    '_showConstraints -> false
+    )
+
+
+</fieldset>
+
+<div class="actions">
+    <input type="submit" value="Create this computer" class="btn primary"> or
+    <a href="@routes.Application.list()" class="btn">Cancel</a>
+</div>
+
 }
+
+}
+
+
+@*
+@(bookForm: Form[Book])
+
+@import helper._
+@implicitFieldConstructor = @{FieldConstructor(twitterBootstrapInput.render)}
+
+@main{
+<h1>Add a book</h1>
+@form(routes.Application.save()){
+<fieldset>
+
+    @inputText(bookForm("name"), '_label ->"Book Name", '_help-> "")
+    @inputText(bookForm("category"), '_label -> "Category", '_help-> "")
+    @inputText(bookForm("publisher"), '_label -> "Publisher", '_help-> "")
+    @inputText(bookForm("published_year"), '_label -> "Publisher_Year", '_help->""))
+</fieldset>
+
+<div class="actions">
+    <input type="submit" value="Add this book" class="btn primary"> or
+    <a href="@routes.Application.list()" class="btn">Cancel</a>
+</div>
+}
+}
+*@

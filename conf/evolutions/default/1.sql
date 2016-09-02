@@ -14,6 +14,7 @@ create table computer (
   introduced                timestamp,
   discontinued              timestamp,
   company_id                bigint,
+  processor                 varchar(255),
   constraint pk_computer primary key (id))
 ;
 
