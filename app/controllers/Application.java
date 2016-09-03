@@ -24,7 +24,11 @@ public class Application extends Controller {
     public Result GO_HOME = redirect(
         routes.Application.list(0, "name", "asc", "")
     );
-    
+
+
+    public Result book_home =redirect(
+            routes.Application.bookList()
+    );
     /**
      * Handle default path requests, redirect to computers list
      */
@@ -48,7 +52,26 @@ public class Application extends Controller {
             )
         );
     }
-    
+
+    public Result bookList(){
+        return ok(
+                booklist.render(Book.bookPage())
+        );
+    }
+
+    /*public Result getBookDetails(Long id) {
+        Form<Book> bookForm = form(Book.class).fill(
+                Book.find.byId(id)
+        );
+        return ok(
+                editForm.render(id, bookForm)
+        );
+    }*/
+
+   /* public Result bookList(){
+        return ok(booklist.render(Book.bookpage())
+        );
+    }*/
     /**
      * Display the 'edit form' of a existing Computer.
      *
@@ -93,17 +116,6 @@ public class Application extends Controller {
         );
     }
 
-   /* public Result create(){
-        Form<Book> bookForm = formFactory.form(Book.class);
-        return ok(
-            createForm.render(bookForm)
-        );
-    }*/
-
-
-
-
-
     /**
      * Handle the 'new computer form' submission 
      */
@@ -117,20 +129,25 @@ public class Application extends Controller {
         return GO_HOME;
     }
 
+    /*
+    public Result createBook(){
+        Form<Book> bookForm = formFactory.form(Book.class);
+        return ok(
+                bookCreateForm.render(bookForm)
+        );
+    }
+    */
 /*
-   public Result save(){
-
-       Form<Book> bookForm = formFactory.form(Book.class).bindFromRequest();
+   public Result saveBook(){
+       Form<Book>  bookForm = formFactory.form(Book.class).bindFromRequest();
        if(bookForm.hasErrors()){
-           return badRequest(createForm.render(bookForm));
+           return badRequest(bookCreateForm.render(bookForm));
        }
        bookForm.get().save();
+       return book_home;
    }
+
 */
-
-
-
-
     /**
      * Handle computer deletion
      */

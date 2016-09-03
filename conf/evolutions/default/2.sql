@@ -1,6 +1,8 @@
 # --- Sample dataset
 
 # --- !Ups
+insert into book (id, name, category, publisher, published_year) values (1, 'Cracking the Coding Interview', 'Technology', 'Tata McGraHill', 2010);
+insert into book (id, name, category, publisher, published_year) values (2, 'Effective Java', 'Technology', 'Jashua Bloch', 2007);
 
 insert into company (id,name) values (  1,'Apple Inc.');
 insert into company (id,name) values (  2,'Thinking Machines');
@@ -621,6 +623,6 @@ insert into computer (id,name,introduced,discontinued,company_id) values (573,'G
 insert into computer (id,name,introduced,discontinued,company_id) values (574,'iPhone 4S','2011-10-14',null,1);
 
 # --- !Downs
-
+delete from book;
 delete from computer;
 delete from company;

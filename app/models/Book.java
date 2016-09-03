@@ -3,9 +3,11 @@ package models;
 import com.avaje.ebean.Finder;
 import com.avaje.ebean.Model;
 import com.avaje.ebean.PagedList;
+import com.avaje.ebean.common.BeanList;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.Constraint;
@@ -15,7 +17,7 @@ import java.util.Date;
  * Created by Harish on 9/1/2016.
  */
 @Entity
-public class Book {
+public class Book extends Model {
     private static final long serialVersionUID = 1L;
     @Id
     public Long id;
@@ -23,12 +25,14 @@ public class Book {
     public String name;
     public String category;
     public String publisher;
-    public int published_year;
 
-    public static Model.Finder<Long,Book> find = new Model.Finder<Long,Book>(Long.class, Book.class);
+    @Column(name="published_year")
+    public int publishedYear;
 
-    public static PagedList<Book> page(){
-        return (PagedList<Book>) find.all();
+    public static Find<Long,Book> find = new Find<Long,Book>(){};
+
+    public static BeanList<Book> bookPage(){
+        return (BeanList<Book>) find.all();
     }
 
 

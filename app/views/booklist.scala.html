@@ -1,0 +1,53 @@
+@(currentPage:com.avaje.ebean.common.BeanList[Book])
+@header(key:String, title:String) = {
+    <th class='@key.replace(".","_") header '>
+        <a href="">@title</a>
+    </th>
+}
+@main {
+
+    @if(currentPage.size()==0){
+    <div class="well">
+        <em>Nothing to display</em>
+    </div>
+    }else{
+    <table class="computers zebra-striped">
+        <thead>
+        <tr>
+            @header("name", "Book name")
+            @header("category", "Category")
+            @header("publisher", "Publisher")
+            @header("publishedYear", "Publisher year")
+        </tr>
+        </thead>
+        <tbody>
+        @for(book <- currentPage.getActualList()){
+        <tr>
+            <td><a href="">@book.name</a></td>
+            <td>
+                @if(book.category==null){
+                <em>-</em>
+                }else{
+                @book.category
+                }
+            </td>
+            <td>
+                @if(book.publisher==null){
+                <em>-</em>
+                }else{
+                @book.publisher
+                }
+            </td>
+            <td>
+                @if(book.publishedYear==null){
+                <em>-</em>
+                }else{
+                @book.publishedYear
+                }
+            </td>
+        </tr>
+        }
+        </tbody>
+    </table>
+    }
+}
