@@ -26,4 +26,5 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 GET     /books                      controllers.Application.bookList()
 #GET     /books/:id                  controllers.Application.getBookDetails(id: Long)
-#GET     /books/new                  controllers.Application.createBook()
+GET     /books/new                  controllers.Application.createBook()
+POST     /books                  controllers.Application.saveBook()

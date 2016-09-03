@@ -5,7 +5,9 @@
     </th>
 }
 @main {
-
+    <div id="action">
+        <a class="btn success topRight" id="add" href="@routes.Application.createBook()">Add a new book</a><br><br><br>
+    </div>
     @if(currentPage.size()==0){
     <div class="well">
         <em>Nothing to display</em>
@@ -17,7 +19,7 @@
             @header("name", "Book name")
             @header("category", "Category")
             @header("publisher", "Publisher")
-            @header("publishedYear", "Publisher year")
+            @header("publishedYear", "Published year")
         </tr>
         </thead>
         <tbody>

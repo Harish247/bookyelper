@@ -33,7 +33,7 @@ public class Application extends Controller {
      * Handle default path requests, redirect to computers list
      */
     public Result index() {
-        return GO_HOME;
+        return book_home;
     }
 
     /**
@@ -129,15 +129,15 @@ public class Application extends Controller {
         return GO_HOME;
     }
 
-    /*
+
     public Result createBook(){
         Form<Book> bookForm = formFactory.form(Book.class);
         return ok(
                 bookCreateForm.render(bookForm)
         );
     }
-    */
-/*
+
+
    public Result saveBook(){
        Form<Book>  bookForm = formFactory.form(Book.class).bindFromRequest();
        if(bookForm.hasErrors()){
@@ -147,7 +147,14 @@ public class Application extends Controller {
        return book_home;
    }
 
-*/
+   /*public Result updateBook(Long id){
+       Form<Book> bookForm = formFactory.form(Book.class).bindFromRequest();
+       if(bookForm.hasErrors()){
+           return badRequest(boo)
+       }
+   }*/
+
+
     /**
      * Handle computer deletion
      */
