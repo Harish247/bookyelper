@@ -67,11 +67,6 @@ public class Application extends Controller {
                 editForm.render(id, bookForm)
         );
     }*/
-
-   /* public Result bookList(){
-        return ok(booklist.render(Book.bookpage())
-        );
-    }*/
     /**
      * Display the 'edit form' of a existing Computer.
      *
@@ -152,7 +147,9 @@ public class Application extends Controller {
        if(bookForm.hasErrors()){
            return badRequest(bookEditForm.render(id,bookForm));
        }
-       bookForm.get().update();
+       Book book = bookForm.get();
+       book.id = id;
+       book.update();
        return book_home;
    }
 

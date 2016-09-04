@@ -24,10 +24,10 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 
 
-GET     /books                      controllers.Application.bookList()
-#GET     /books/:id                  controllers.Application.getBookDetails(id: Long)
-GET     /books/new                  controllers.Application.createBook()
-POST     /books                     controllers.Application.saveBook()
-GET     /books/:id                  controllers.Application.editBook(id: Long)
-POST    /books/:id                  controllers.Application.updateBook(id: Long)
-POST    /books/:id/delete                  controllers.Application.deleteBook(id: Long)
+GET      /books                        controllers.Application.bookList()
+#GET     /books/:id                   controllers.Application.getBookDetails(id: Long)
+GET      /books/new                    controllers.Application.createBook()
+POST     /books                       controllers.Application.saveBook()
+GET      /books/:id                    controllers.Application.editBook(id: Long)
+POST     /books/:id                    controllers.Application.updateBook(id: Long)
+POST     /books/:id/delete             controllers.Application.deleteBook(id: Long)
