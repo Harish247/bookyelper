@@ -147,13 +147,26 @@ public class Application extends Controller {
        return book_home;
    }
 
-   /*public Result updateBook(Long id){
+   public Result updateBook(Long id){
        Form<Book> bookForm = formFactory.form(Book.class).bindFromRequest();
        if(bookForm.hasErrors()){
-           return badRequest(boo)
+           return badRequest(bookEditForm.render(id,bookForm));
        }
-   }*/
+       bookForm.get().update();
+       return book_home;
+   }
 
+   public Result editBook(Long id){
+       Form<Book> bookForm = formFactory.form(Book.class).fill(
+               Book.find.byId(id)
+       );
+       return ok(bookEditForm.render(id,bookForm));
+   }
+
+   public Result deleteBook(Long id){
+       Book.find.ref(id).delete();
+       return book_home;
+   }
 
     /**
      * Handle computer deletion
