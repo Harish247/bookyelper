@@ -24,7 +24,7 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 
 
-GET      /books                        controllers.Application.bookList()
+GET      /books                        controllers.Application.bookList(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
 #GET     /books/:id                   controllers.Application.getBookDetails(id: Long)
 GET      /books/new                    controllers.Application.createBook()
 POST     /books                       controllers.Application.saveBook()

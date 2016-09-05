@@ -24,6 +24,10 @@ create table book (
   category                varchar(255),
   publisher              varchar(255),
   published_year                int,
+  author                   varchar(255),
+  ISBN                      varchar(255),
+  language                  varchar(255),
+  description               varchar,
   constraint pk_book primary key (id))
 ;
 

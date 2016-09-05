@@ -1,14 +1,43 @@
-@(currentPage:com.avaje.ebean.common.BeanList[Book])
+@(currentPage: com.avaje.ebean.PagedList[Book], currentSortBy: String, currentOrder: String, currentFilter: String)
+
+@link(newPage:Int, newSortBy:String) = @{
+
+var sortBy = currentSortBy
+var order = currentOrder
+
+if(newSortBy != null) {
+sortBy = newSortBy
+if(currentSortBy == newSortBy) {
+if(currentOrder == "asc") {
+order = "desc"
+} else {
+order = "asc"
+}
+} else {
+order = "asc"
+}
+}
+
+// Generate the link
+routes.Application.bookList(newPage, sortBy, order, currentFilter)
+
+}
+
 @header(key:String, title:String) = {
     <th class='@key.replace(".","_") header '>
         <a href="">@title</a>
     </th>
-}
-@main {
+    }
+    @main{
     <div id="action">
+        <form action='@link(0, "name")' method="GET">
+            <input type="search" id="searchbox" name="f" value="@currentFilter" placeholder="Filter by book name...">
+            <input type="submit" id="searchsubmit" value="Filter by name" class="btn primary">
+        </form>
+
         <a class="btn success topRight" id="add" href="@routes.Application.createBook()">Add a new book</a><br><br><br>
     </div>
-    @if(currentPage.size()==0){
+    @if(currentPage.getTotalRowCount==0){
     <div class="well">
         <em>Nothing to display</em>
     </div>
@@ -23,33 +52,33 @@
         </tr>
         </thead>
         <tbody>
-        @for(book <- currentPage.getActualList()){
+        @for(book <- currentPage.getList()){
         <tr>
-            <td><a href="@routes.Application.editBook(book.id)">@book.name</a></td>
+            <td><a href="@routes.Application.editBook(book.getId)">@book.getName</a></td>
             <td>
-                @if(book.category==null){
+                @if(book.getCategory==null){
                 <em>-</em>
                 }else{
-                @book.category
+                @book.getCategory
                 }
             </td>
             <td>
-                @if(book.publisher==null){
+                @if(book.getPublisher==null){
                 <em>-</em>
                 }else{
-                @book.publisher
+                @book.getPublisher
                 }
             </td>
             <td>
-                @if(book.publishedYear==null){
+                @if(book.getPublishedYear==null){
                 <em>-</em>
                 }else{
-                @book.publishedYear
+                @book.getPublishedYear
                 }
             </td>
         </tr>
         }
         </tbody>
     </table>
+        }
     }
-}

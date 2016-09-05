@@ -27,7 +27,7 @@ public class Application extends Controller {
 
 
     public Result book_home =redirect(
-            routes.Application.bookList()
+            routes.Application.bookList(0,"name","asc","")
     );
     /**
      * Handle default path requests, redirect to computers list
@@ -53,11 +53,18 @@ public class Application extends Controller {
         );
     }
 
-    public Result bookList(){
+    public Result bookList(int page,String sortBy,String order,String filter){
+        return ok(
+                booklist.render(Book.bookPage(page, 10, sortBy, order, filter),
+                        sortBy, order, filter
+                )
+        );
+    }
+    /*public Result bookList(){
         return ok(
                 booklist.render(Book.bookPage())
         );
-    }
+    }*/
 
     /*public Result getBookDetails(Long id) {
         Form<Book> bookForm = form(Book.class).fill(
@@ -148,7 +155,7 @@ public class Application extends Controller {
            return badRequest(bookEditForm.render(id,bookForm));
        }
        Book book = bookForm.get();
-       book.id = id;
+       book.setId(id);
        book.update();
        return book_home;
    }
